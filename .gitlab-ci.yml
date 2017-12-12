@@ -1,3 +1,5 @@
+variables:
+  HEROKU_STAGING_API_KEY: "ad3fbeb4-0fee-4f29-bab0-a4305764bf24"
 staging:
   type: deploy
   script:
