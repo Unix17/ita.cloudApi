@@ -1,4 +1,4 @@
-/foo:
-  $ref: ./foo.yaml
-/bar:
-  $ref: ./bar.yaml
+/reporting:
+  $ref: ./reporting.yaml
+/reporting/{id}:
+  $ref: ./reportingId.yaml

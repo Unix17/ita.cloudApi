@@ -1,24 +1,101 @@
 swagger: '2.0'
+host: 'localhost:10010'
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
 info:
   version: 0.0.0
-  title: Simple API
+  title: ITA.Cloud API
 paths:
-  /foo:
+  /reporting:
+    x-swagger-router-controller: reporting-controller
     get:
+      operationId: getAll
+      description: Returns list of Reporting
       responses:
         '200':
-          description: OK
-  /bar:
-    get:
-      responses:
-        '200':
-          description: OK
+          description: Success
           schema:
-            $ref: '#/definitions/User'
+            type: array
+            items:
+              $ref: '#/definitions/Reporting'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      operationId: create
+      description: Add a new reporting information
+      parameters:
+        - name: reporting
+          description: Reporting properties
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Reporting'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/GeneralResponse'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  '/reporting/{id}':
+    x-swagger-router-controller: reporting-controller
+    put:
+      operationId: update
+      description: Update reporting information
+      parameters:
+        - name: id
+          description: Reporting id
+          type: string
+          in: path
+          required: true
+        - name: reporting
+          description: Reporting properties
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Reporting'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/GeneralResponse'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 definitions:
-  User:
-    type: object
+  Reporting:
+    required:
+      - byte
+      - resource
+      - user
     properties:
-      name:
+      byte:
+        type: number
+      resource:
+        type: string
+      user:
+        type: string
+  GeneralResponse:
+    properties:
+      message:
+        type: string
+    required:
+      - message
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
         type: string
 

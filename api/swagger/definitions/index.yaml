@@ -1,2 +1,14 @@
-User:
-  $ref: ./User.yaml
+Reporting:
+  $ref: ./reporting.yaml
+GeneralResponse:
+  properties:
+    message:
+      type: string
+  required:
+  - message
+ErrorResponse:
+  required:
+     - message
+  properties:
+    message:
+      type: string
