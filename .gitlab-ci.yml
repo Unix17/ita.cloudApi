@@ -6,4 +6,4 @@ staging:
   - gem install dpl
   - dpl --provider=heroku --app=gitlab-ci-ruby-test-staging --api-key=$HEROKU_STAGING_API_KEY
   only:
-  - master
+  - dev
